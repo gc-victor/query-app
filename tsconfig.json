@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "lib": ["ESNext"],
+        "baseUrl": "./src",
+        "paths": {
+            "@/*": ["./*"]
+        },
+        "module": "esnext",
+        "target": "esnext",
+        "moduleResolution": "bundler",
+        "moduleDetection": "force",
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "composite": true,
+        "strict": true,
+        "downlevelIteration": true,
+        "skipLibCheck": true,
+        "jsx": "react",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowJs": true,
+        "types": ["./index.d.ts"],
+    }
+}
