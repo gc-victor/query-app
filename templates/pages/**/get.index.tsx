@@ -15,7 +15,7 @@ export async function handleRequest(req: Request) {
     const url = new URL(req.url);
 
     const db = new Database({{ tableConstantCase }}_DATABASE);
-    const result = await db.query("SELECT * FROM {{ table }} ORDER BY created_at DESC");
+    const result = await db.query("SELECT * FROM  {{ tableSnakeCase }} ORDER BY created_at DESC");
     const {{ tableCamelCase }}List = result.map(({{ tableCamelCase }}) => {
         {% for column in columns %}
         const {{ column.columnNameCamelCase }} = {{ tableCamelCase }}.{{ column.columnName }} as {{ column.columnTypeMatchTS }};

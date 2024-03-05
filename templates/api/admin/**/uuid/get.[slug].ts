@@ -19,7 +19,7 @@ export async function handleRequest(req: Request): Promise<Response> {
         const { token } = await adminUserSession.load(session);
 
         const uuid = req.url.split("/").pop();
-        const query = "SELECT * FROM {{ table }} WHERE uuid = :uuid;";
+        const query = "SELECT * FROM  {{ tableSnakeCase }} WHERE uuid = :uuid;";
         const params = {
             ":uuid": uuid,
         };

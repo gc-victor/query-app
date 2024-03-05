@@ -35,7 +35,7 @@ export async function handleRequest(req: Request): Promise<Response> {
 
         parse({{ tablePascalCase }}UpdateValidation, { uuid, {% for column in columns %} {% if column.columnLast == false %}{{ column.columnName }}: {{ column.columnNameCamelCase }}, {% else %} {{ column.columnName }}: {{ column.columnNameCamelCase }}{% endif %}{% endfor %} });
 
-        const query = "UPDATE {{ table }} SET {% for column in columns %} {{ column.columnName }} = :{{ column.columnName }}{% if column.columnLast == false %}, {% endif %}{% endfor %} WHERE uuid = :uuid;";
+        const query = "UPDATE  {{ tableSnakeCase }} SET {% for column in columns %} {{ column.columnName }} = :{{ column.columnName }}{% if column.columnLast == false %}, {% endif %}{% endfor %} WHERE uuid = :uuid;";
         const params = {
             ":uuid": uuid,
             {% for column in columns %}

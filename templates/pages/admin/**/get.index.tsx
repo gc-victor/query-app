@@ -32,7 +32,7 @@ export async function handleRequest(req: Request): Promise<Response> {
     }
 
     const db = new Database({{ tableConstantCase }}_DATABASE);
-    const result = await db.query("SELECT * FROM {{ table }} ORDER BY created_at DESC");
+    const result = await db.query("SELECT * FROM  {{ tableSnakeCase }} ORDER BY created_at DESC");
 
     return new Response(
         <Template>

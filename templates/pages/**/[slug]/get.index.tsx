@@ -19,7 +19,7 @@ export async function handleRequest(req: Request) {
 
     try {
         const db = new Database({{ tableConstantCase }}_DATABASE);
-        const result = await db.query("SELECT * FROM {{ table }} WHERE uuid = ?", [url.pathname.replace("/{{ tableLowerCase }}/", "")]);
+        const result = await db.query("SELECT * FROM  {{ tableSnakeCase }} WHERE uuid = ?", [url.pathname.replace("/{{ tableLowerCase }}/", "")]);
         const uuid = result[0]?.uuid as string;
         {% for column in columns %}
         const {{ column.columnName }} = result[0]?.{{ column.columnName }} as {{ column.columnTypeMatchTS }};

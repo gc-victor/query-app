@@ -18,7 +18,7 @@ export async function handleRequest(req: Request): Promise<Response> {
 
         const { token } = await adminUserSession.load(session);
 
-        const query = "SELECT * FROM {{ table }};";
+        const query = "SELECT * FROM  {{ tableSnakeCase }};";
         const params: never[] = [];
 
         const response = await fetcher(QUERY_API_QUERY, {

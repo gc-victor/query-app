@@ -26,7 +26,7 @@ export async function handleRequest(req: Request): Promise<Response> {
 
         parse({{ tablePascalCase }}DeleteValidation, { uuid });
 
-        const query = "DELETE FROM {{ table }} WHERE uuid = :uuid;";
+        const query = "DELETE FROM  {{ tableSnakeCase }} WHERE uuid = :uuid;";
         const params = {
             ":uuid": uuid,
         };

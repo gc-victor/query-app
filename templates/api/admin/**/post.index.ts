@@ -34,7 +34,7 @@ export async function handleRequest(req: Request): Promise<Response> {
 
         parse({{ tablePascalCase }}CreateValidation, { {% for column in columns %} {% if column.columnLast == false %}{{ column.columnName }}: {{ column.columnNameCamelCase }}, {% else %} {{ column.columnName }}: {{ column.columnNameCamelCase }}{% endif %}{% endfor %} });
 
-        const query = "INSERT INTO {{ table }} ({% for column in columns %} {{ column.columnName }}{% if column.columnLast == false %}, {% endif %}{% endfor %}) VALUES ({% for column in columns %} :{{ column.columnName }}{% if column.columnLast == false %}, {% endif %}{% endfor %});";
+        const query = "INSERT INTO {{ tableSnakeCase }} ({% for column in columns %} {{ column.columnName }}{% if column.columnLast == false %}, {% endif %}{% endfor %}) VALUES ({% for column in columns %} :{{ column.columnName }}{% if column.columnLast == false %}, {% endif %}{% endfor %});";
         const params = {
             {% for column in columns %}
             ":{{ column.columnName }}": {{ column.columnNameCamelCase }},
