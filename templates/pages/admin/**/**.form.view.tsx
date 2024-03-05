@@ -20,7 +20,7 @@ export function {{ tablePascalCase }}FormView() {
                 </Button>
             </div>
             <fieldset class="max-h-svh -mb-40 overflow-y-auto pb-40 px-6 space-y-6" tabindex="-1">
-                <Legend>{{ tablePascalCase }}</Legend>
+                <Legend>{{ tableCapitalCase }}</Legend>
                 {% for column in columns  %}
                 {% if column.columnType == string || column.columnType == uuid %}
                 <Input id="{{ column.columnName }}" label="{{ column.columnNameCapitalCase }}" aria-required="true" placeholder="Write a {{ column.columnName }} here..." />
