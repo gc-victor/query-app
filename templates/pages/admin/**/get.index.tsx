@@ -36,7 +36,7 @@ export async function handleRequest(req: Request): Promise<Response> {
 
     return new Response(
         <Template>
-            <Head title="Query Admin {{ tableCamelCase }}">{await getStyle("dist/styles.css")}</Head>
+            <Head title="Query Admin {{ tableCapitalCase }}">{await getStyle("dist/styles.css")}</Head>
             <Body class="overflow-y-scroll">
                 <{{tablePascalCase }}View data={result as unknown as {{tablePascalCase }}ViewProps[]} />
                 {svg}
