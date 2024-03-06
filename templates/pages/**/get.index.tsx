@@ -53,7 +53,7 @@ export async function handleRequest(req: Request) {
                 <Body class="overflow-y-scroll">
                     <Layout>
                         <div class="flex flex-col space-y-8">
-                            <h1 class="font-cal text-4xl">{{ tableCapitalCase }} Items</h1>
+                            <h1 class="font-cal text-4xl">{{ tableCapitalCase }} List</h1>
                             { {{ tableCamelCase }}List.map(({{ tableCamelCase }}: {{ tablePascalCase }}Type) => (
                                 <article class="rounded-lg border p-8 shadow-sm">
                                     <h2 class="font-cal text-2xl">

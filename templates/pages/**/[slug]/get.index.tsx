@@ -12,6 +12,7 @@ import { NOT_FOUND_CODE } from "@/lib/server/status";
 import { Html404 } from "@/pages/layouts/404";
 import { Layout } from "@/pages/layouts/layout";
 import { Body, Head, Template } from "@/pages/layouts/template";
+import { Button } from "@/pages/components/button";
 import { {{ tablePascalCase }} } from "@/pages/{{ tableLowerCase }}/{{ tableLowerCase }}";
 
 export async function handleRequest(req: Request) {
@@ -42,6 +43,12 @@ export async function handleRequest(req: Request) {
                                 Published on <time datetime={datetime}>{createdAt}</time>
                             </p>
                             <{{ tablePascalCase }} {% for column in columns %} {{ column.columnNameCamelCase }}={{{ column.columnNameCamelCase }}}{% endfor %} createdAt={createdAt} datetime={datetime} />
+                            <hr class="mt-8" />
+                            <p class="mt-8">
+                                <Button tag="a" variant="md" href="/job-application/">
+                                    {{ tableCapitalCase }} List
+                                </Button>
+                            </p>
                         </article>
                     </Layout>
                     {svg}
