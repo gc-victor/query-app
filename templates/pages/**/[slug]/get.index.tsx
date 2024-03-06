@@ -38,7 +38,7 @@ export async function handleRequest(req: Request) {
                 <Body class="overflow-y-scroll">
                     <Layout>
                         <article>
-                            <h1 class="font-cal text-3xl">{{ tableCapitalCase }} Item</h1>
+                            <h1 class="font-cal text-4xl">{{ tableCapitalCase }} Item</h1>
                             <p class="text-slate-500">
                                 Published on <time datetime={datetime}>{createdAt}</time>
                             </p>
