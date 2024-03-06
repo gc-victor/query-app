@@ -22,9 +22,9 @@ export async function handleRequest(req: Request) {
         const result = await db.query("SELECT * FROM  {{ tableSnakeCase }} WHERE uuid = ?", [url.pathname.replace("/{{ tableLowerCase }}/", "")]);
         const uuid = result[0]?.uuid as string;
         {% for column in columns %}
-        const {{ column.columnName }} = result[0]?.{{ column.columnName }} as {{ column.columnTypeMatchTS }};
+        const {{ column.columnNameCamelCase }} = result[0]?.{{ column.columnName }} as {{ column.columnTypeMatchTS }};
         {% endfor %}
-        const created_at = new Date((result[0].created_at as number) * 1000).toLocaleDateString("en-US", {
+        const createdAt = new Date((result[0].created_at as number) * 1000).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -36,8 +36,13 @@ export async function handleRequest(req: Request) {
                 <Head title="Query {{ tableCapitalCase }} Item">{await getStyle("dist/styles.css")}</Head>
                 <Body class="overflow-y-scroll">
                     <Layout>
-                        <h1 class="font-cal text-2xl">{{ tableCapitalCase }} Item {uuid}</h1>
-                        <{{ tablePascalCase }} uuid={ uuid } {% for column in columns %} {{ column.columnName }}={{{ column.columnName }}}{% endfor %} created_at={created_at} datetime={datetime} />
+                        <article>
+                            <h1 class="font-cal text-3xl">{{ tableCapitalCase }} Item</h1>
+                            <p class="text-slate-500">
+                                Published on <time datetime={datetime}>{createdAt}</time>
+                            </p>
+                            <{{ tablePascalCase }} {% for column in columns %} {{ column.columnNameCamelCase }}={{{ column.columnNameCamelCase }}}{% endfor %} createdAt={createdAt} datetime={datetime} />
+                        </article>
                     </Layout>
                     {svg}
                     {hotReload(url.href)}
