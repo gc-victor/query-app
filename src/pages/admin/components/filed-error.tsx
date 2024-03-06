@@ -12,7 +12,7 @@ export function FieldError({ children, id }: { children?: unknown; id: string })
                 text-sm
                 text-red-500
 
-                peer-invalid:block
+                peer-aria-[invalid=true]:block
             `}
         >
             <span

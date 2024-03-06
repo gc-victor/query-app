@@ -10,7 +10,11 @@ export interface {{ tablePascalCase }}ViewProps {
     id: number;
     uuid: string;
     {% for column in columns %}
+    {% if column.columnType == timestamp %}
+    {{ column.columnName }}: number,
+    {% else %}
     {{ column.columnName }}: {{ column.columnTypeMatchTS }},
+    {% endif %}
     {% endfor %}
     created_at: number;
     updated_at: number;
@@ -32,51 +36,47 @@ export function {{ tablePascalCase }}View({ data }: { data: {{ tablePascalCase }
                     <table is="table-element" url={PAGE_ADMIN_{{ tableConstantCase }}_PATH} class="text-left rtl:text-right w-max">
                         <thead class="font-cal h-10 text-xs uppercase">
                             <tr>
-                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-id z-10">
+                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-id word-spacing z-10">
                                     <span className="sr-only">Visit</span>
                                 </th>
-                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-id z-10">
+                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-id word-spacing z-10">
                                     id
                                 </th>
-                                <th scope="col" class="bg-slate-100 px-4 py-3 w-id z-10">
+                                <th scope="col" class="bg-slate-100 px-4 py-3 w-id word-spacing z-10">
                                     uuid
                                 </th>
                                 {% for column in columns %}
                                 {% if column.columnTypeMatchTS == number %}
-                                <th scope="col" class="bg-slate-100 px-4 py-3 w-number z-10">
-                                    {{ column.columnNameSnakeCase }}
+                                <th scope="col" class="bg-slate-100 px-4 py-3 w-number word-spacing z-10">
+                                    {{ column.columnNameCapitalCase }}
                                 </th>
                                 {% endif %}{% if column.columnTypeMatchTS == boolean %}
-                                <th scope="col" class="bg-slate-100 px-4 py-3 w-bool z-10">
-                                    {{ column.columnNameSnakeCase }}
+                                <th scope="col" class="bg-slate-100 px-4 py-3 w-bool word-spacing z-10">
+                                    {{ column.columnNameCapitalCase }}
                                 </th>
                                 {% endif %}{% if column.columnType == uuid %}
-                                <th scope="col" class="bg-slate-100 px-4 py-3 w-uuid z-10">
-                                    {{ column.columnNameSnakeCase }}
+                                <th scope="col" class="bg-slate-100 px-4 py-3 w-uuid word-spacing z-10">
+                                    {{ column.columnNameCapitalCase }}
                                 </th>
                                 {% endif %}{% if column.columnType == string %}
-                                <th scope="col" class="bg-slate-100 px-4 py-3 w-string z-10">
-                                    {{ column.columnNameSnakeCase }}
+                                <th scope="col" class="bg-slate-100 px-4 py-3 w-string word-spacing z-10">
+                                    {{ column.columnNameCapitalCase }}
                                 </th>
                                 {% endif %}{% if column.columnType == text %}
-                                <th scope="col" class="bg-slate-100 px-4 py-3 w-text z-10">
-                                    {{ column.columnNameSnakeCase }}
+                                <th scope="col" class="bg-slate-100 px-4 py-3 w-text word-spacing z-10">
+                                    {{ column.columnNameCapitalCase }}
                                 </th>
                                 {% endif %}{% if column.columnType == timestamp %}
-                                <th scope="col" class="bg-slate-100 px-4 py-3 w-timestamp z-10">
-                                    {{ column.columnNameSnakeCase }}
-                                </th>
-                                {% endif %}{% if column.columnType == date %}
-                                <th scope="col" class="bg-slate-100 px-4 py-3 w-timestamp z-10">
-                                    {{ column.columnNameSnakeCase }}
+                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-timestamp word-spacing z-10">
+                                    {{ column.columnNameCapitalCase }}
                                 </th>
                                 {% endif %}
                                 {% endfor %}
-                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-timestamp z-10">
-                                    created_at
+                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-timestamp word-spacing z-10">
+                                    Created At
                                 </th>
-                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-timestamp z-10">
-                                    updated_at
+                                <th scope="col" class="bg-slate-100 px-4 py-3 text-center w-timestamp word-spacing z-10">
+                                    Updated At
                                 </th>
                             </tr>
                         </thead>
@@ -102,10 +102,10 @@ export function {{ tablePascalCase }}View({ data }: { data: {{ tablePascalCase }
                                         </td>
                                         <td class="px-4 text-center">
                                             {/*
-                                                    @see:
-                                                    https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html#Update02
-                                                    https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html#comment-246683
-                                                */}
+                                                CREDIT:
+                                                https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html#Update02
+                                                https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html#comment-246683
+                                            */}
                                             <button
                                                 class="
                                                     after:content-['']
@@ -148,16 +148,6 @@ export function {{ tablePascalCase }}View({ data }: { data: {{ tablePascalCase }
                                             <div class="max-h-8 w-text truncate">{ {{ tableCamelCase }}.{{ column.columnName }} }</div>
                                         </td>
                                         {% endif %}{% if column.columnType == timestamp %}
-                                        <td class="px-4">
-                                            <div class="w-number">{ {{ tableCamelCase }}.{{ column.columnName }} }</div>
-                                        </td>
-                                        {% endif %}{% if column.columnType == date %}
-                                        <td class="px-4 text-center">
-                                            <div class="m-auto w-timestamp">
-                                                <div>{date({{ tableCamelCase }}.{{ column.columnName }})}</div>
-                                                <div class="text-slate-500 text-xs">{time({{ tableCamelCase }}.{{ column.columnName }})}</div>
-                                            </div>
-                                        </td>
                                         <td class="px-4 text-center">
                                             <div class="m-auto w-timestamp">
                                                 <div>{date({{ tableCamelCase }}.{{ column.columnName }})}</div>
@@ -190,7 +180,8 @@ export function {{ tablePascalCase }}View({ data }: { data: {{ tablePascalCase }
 }
 
 function date(timestamp: number) {
-    return new Date(timestamp * 1000).toLocaleDateString();
+    const lang = typeof navigator !== "undefined" && navigator.language;
+    return new Date(timestamp * 1000).toLocaleDateString(lang || "en-US", { day: "2-digit", month: "2-digit", year: "numeric" });
 }
 
 function time(timestamp: number) {

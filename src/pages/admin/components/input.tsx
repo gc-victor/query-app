@@ -29,30 +29,28 @@ export function Input({ label, id, children, ...props }: { label: string; id: st
             <input
                 id={id}
                 name={id}
-                aria-describedby={`err-${id}`}
-                aria-required="true"
                 autocomplete="off"
                 {...props}
                 class={`
-                        bg-transparent
-                        border
-                        border-slate-950
-                        p-3
-                        placeholder-slate-600
-                        rounded
-                        w-full
+                    bg-transparent
+                    border
+                    border-slate-950
+                    p-3
+                    placeholder-slate-600
+                    rounded
+                    w-full
 
-                        disabled:bg-slate-50
-                        disabled:text-slate-500
-                        disabled:border-slate-500
+                    disabled:bg-slate-50
+                    disabled:text-slate-500
+                    disabled:border-slate-500
 
-                        ${props.type === "file" ? fileStyles : ""}
+                    ${props.type === "file" ? fileStyles : ""}
 
-                        peer
+                    peer
 
-                        invalid:border-red-500
-                        invalid:placeholder:text-red-500
-                    `}
+                    aria-[invalid=true]:border-red-500
+                    aria-[invalid=true]:placeholder:text-red-500
+                `}
             />
 
             <FieldError id={id} />

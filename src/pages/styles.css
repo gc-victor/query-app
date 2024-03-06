@@ -43,25 +43,31 @@ body {
 /* Webfonts */
 
 @font-face {
-    font-family: 'Cal Sans';
+    font-family: "Cal Sans";
     font-style: normal;
     font-display: swap;
     font-weight: 600;
-    src: url('/_/asset/public/webfonts/cache/CalSans-SemiBold.woff2') format('woff2'),
-        url('/_/asset/public/webfonts/cache/CalSans-SemiBold.woff') format('woff'),
-        url('/_/asset/public/webfonts/cache/CalSans-SemiBold.ttf') format('truetype');
+    src: url("/_/asset/public/webfonts/cache/CalSans-SemiBold.woff2") format("woff2"),
+        url("/_/asset/public/webfonts/cache/CalSans-SemiBold.woff") format("woff"),
+        url("/_/asset/public/webfonts/cache/CalSans-SemiBold.ttf") format("truetype");
 }
 
 body {
     color: rgb(2 6 23);
-    font-family: 'RedHatDisplay-Regular', sans-serif;
+    font-family: "RedHatDisplay-Regular", sans-serif;
+}
+
+/* Utils */
+
+.word-spacing {
+    word-spacing: 0.25rem;
 }
 
 /* Post */
 
 #post h2,
 #post h3 {
-    font-family: 'Cal Sans', sans-serif;
+    font-family: "Cal Sans", sans-serif;
     font-weight: 600;
 }
 

@@ -17,6 +17,8 @@ class Form extends HTMLFormElement {
 
         this.addEventListener("reset", this.close);
 
+        this.inputDate();
+
         for (const button of Array.from(this.querySelectorAll('button[type="submit"]'))) {
             button.addEventListener("click", this.handleSubmit.bind(this));
         }
@@ -24,7 +26,22 @@ class Form extends HTMLFormElement {
 
     [key: string]: unknown;
 
-    // from https://web.dev/custom-elements-best-practices/#make-properties-lazy
+    private inputDate() {
+        const showPicker = (event: Event) => {
+            if ((event as KeyboardEvent).type === "keydown" && !["Tab", "Escape"].includes((event as KeyboardEvent).key)) {
+                event.preventDefault();
+                (event.target as HTMLInputElement).showPicker();
+            }
+        };
+
+        for (const el of Array.from(this.querySelectorAll('input[type="date"]'))) {
+            el.addEventListener("click", showPicker);
+            el.addEventListener("focus", showPicker);
+            el.addEventListener("keydown", showPicker);
+        }
+    }
+
+    // CREDIT: https://web.dev/custom-elements-best-practices/#make-properties-lazy
     upgradeProperty(prop: string): void {
         if (Object.prototype.hasOwnProperty.call(this, prop)) {
             const value: unknown = this[prop];
@@ -82,6 +99,8 @@ class Form extends HTMLFormElement {
                 for (const el of Array.from(formField)) {
                     if (el.tagName === "INPUT" && el.type === "checkbox") {
                         (el as HTMLInputElement).checked = fieldValue;
+                    } else if (el.tagName === "INPUT" && el.type === "date") {
+                        (el as HTMLInputElement).valueAsNumber = fieldValue * 1000;
                     } else {
                         el.value = fieldValue;
                     }
@@ -119,6 +138,8 @@ class Form extends HTMLFormElement {
 
         // NOTE: Workaround to send binary data as it fails in Query as it isn't a valid UTF-8 string
         await this.fileToData(formData);
+        // NOTE: it forces to set the formData value to valueAsNumber
+        this.dateToValueAsNumber(formData);
 
         const res = await fetch(`${this.path}`, { method: "POST", body: formData });
 
@@ -140,6 +161,8 @@ class Form extends HTMLFormElement {
 
         // NOTE: Workaround to send binary data as it fails in Query as it isn't a valid UTF-8 string
         await this.fileToData(formData);
+        // NOTE: it forces to set the formData value to valueAsNumber
+        this.dateToValueAsNumber(formData);
 
         formData.set("uuid", this.uuid);
 
@@ -187,6 +210,7 @@ class Form extends HTMLFormElement {
 
         if (isValid) {
             el.removeAttribute("aria-invalid");
+            el.removeAttribute("aria-describedby");
             el.setCustomValidity("");
             el.reportValidity();
 
@@ -198,7 +222,10 @@ class Form extends HTMLFormElement {
 
             el.removeEventListener("input", this.clearValidation.bind(this));
         } else {
+            const id = el.id;
+
             el.setAttribute("aria-invalid", "true");
+            el.setAttribute("aria-describedby", `err-${id}`);
             el.setCustomValidity(errorMessage);
             el.reportValidity();
 
@@ -209,7 +236,9 @@ class Form extends HTMLFormElement {
                 elError.textContent = errorMessage;
             }
 
-            el.addEventListener("input", this.clearValidation.bind(this));
+            if (el.type !== "date") {
+                el.addEventListener("input", this.clearValidation.bind(this));
+            }
 
             // NOTE: avoids the native tooltip
             (this.querySelector('button[type="submit"]') as HTMLButtonElement)?.focus();
@@ -234,6 +263,13 @@ class Form extends HTMLFormElement {
                 const uint8Array = new Uint8Array(arrayBuffer);
                 formData.set(key, new Blob([JSON.stringify(Array.from(uint8Array))], { type: value.type }), value.name);
             }
+        }
+    }
+
+    private dateToValueAsNumber(formData: FormData) {
+        for (const el of Array.from(this.querySelectorAll('input[type="date"]'))) {
+            const inputElement = el as HTMLInputElement;
+            formData.set(inputElement.name, (inputElement.valueAsNumber / 1000).toString());
         }
     }
 }

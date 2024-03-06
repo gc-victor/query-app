@@ -32,6 +32,8 @@ export function {{ tablePascalCase }}FormView() {
                 <Switch id="{{ column.columnName }}" label="{{ column.columnNameCapitalCase }}" />
                 {% endif %}{% if column.columnTypeMatchTS == number %}
                 <Input id="{{ column.columnName }}" label="{{ column.columnNameCapitalCase }}" type="number" step="any" aria-required="true" placeholder="Write a {{ column.columnName }} here..." />
+                {% endif %}{% if column.columnType == timestamp %}
+                <Input id="{{ column.columnName }}" label="{{ column.columnNameCapitalCase }}" type="date" aria-required="true" placeholder="Write a {{ column.columnName }} here..." />
                 {% endif %}
                 {% endfor %}
             </fieldset>

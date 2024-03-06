@@ -12,8 +12,6 @@ export function Textarea({ children = "", id, label, ...props }: { id: string; l
             <textarea
                 id={id}
                 name={id}
-                aria-describedby={`err-${id}`}
-                aria-required="true"
                 autocomplete="off"
                 {...props}
                 class="
@@ -33,8 +31,8 @@ export function Textarea({ children = "", id, label, ...props }: { id: string; l
 
                 peer
 
-                invalid:border-red-500
-                invalid:placeholder:text-red-500
+                aria-[invalid=true]:border-red-500
+                aria-[invalid=true]:placeholder:text-red-500
                 "
             >
                 {children}
