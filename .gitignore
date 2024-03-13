@@ -177,4 +177,7 @@ out
 dist/
 .dbs/
 .env
-.query
+.query/.cache
+.query/.history
+.query/.token
+
