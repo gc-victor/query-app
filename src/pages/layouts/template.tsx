@@ -3,7 +3,7 @@ import h from "h";
 export const Template = ({ children }: { children?: unknown }) => {
     return `<!DOCTYPE html>${(
         <html lang="en">
-            <body>{children}</body>
+            {children}
         </html>
     )}`;
 };
