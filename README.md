@@ -54,7 +54,9 @@ To get started with the Query App locally, you need to follow these steps:
     irm https://github.com/gc-victor/query/releases/latest/download/query-server-installer.ps1 | iex
     ```
 
-6. Setup the environment variables
+6. Setup Query
+
+    Let's start with the environment variables
 
     ```bash
     cp .env.dist .env
@@ -67,6 +69,18 @@ To get started with the Query App locally, you need to follow these steps:
 
     - **QUERY_SERVER_ADMIN_EMAIL**:  Add your email or use `admin` for local development
     - **QUERY_SERVER_ADMIN_PASSWORD**: Add a password or use `admin` for local development
+
+    Let's finish with the settings
+
+    ```bash
+    query settings
+    ```
+
+    For local development, use the following settings:
+
+    - **URL**: `http://localhost:3000`
+    - **Email**: `admin`
+    - **Password**: `admin`
 
 7. Run the server
 
