@@ -30,7 +30,7 @@ export function PostView({ data }: { data: PostViewProps[] }) {
                     <PostFormView />
                 </drawer-element>
                 <div data-hot-reload-scroll="table-wrapper" class="h-[calc(100lvh_-_65px)] relative overflow-x-auto overflow-y-auto">
-                    <div class="fixed bg-slate-100 h-10 w-full -z-10" />
+                    <div class="absolute bg-slate-100 h-10 w-full -z-10" />
                     <table is="table-element" url={PAGE_ADMIN_POST_PATH} class="text-left rtl:text-right w-max">
                         <thead class="font-cal h-10 text-xs uppercase">
                             <tr>
