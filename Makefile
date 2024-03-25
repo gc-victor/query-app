@@ -53,6 +53,41 @@ clean: ## Get a fresh start
 	sqlite3 .dbs/query_asset.sql "DELETE from asset" & \
 	sqlite3 .dbs/query_function.sql "DELETE from function"
 
+# Deploy
+
+_dbundle:
+	@start=$$(date +%s%N); \
+	make bundle-admin -s & \
+	make bundle-public -s; \
+	end=$$(date +%s%N); \
+	echo "- Bundled: $$(( (end-start)/1000000 ))ms"
+
+_dtailwindcss:
+	@start=$$(date +%s%N); \
+	make bundle-styles -s; \
+	end=$$(date +%s%N); \
+	echo "- Styles created: $$(( (end-start)/1000000 ))ms"
+
+_dasset:
+	@start=$$(date +%s%N); \
+	query asset dist & \
+	query asset public; \
+	end=$$(date +%s%N); \
+	echo "- Assets updated: $$(( (end-start)/1000000 ))ms"
+
+_dfunction:
+	@start=$$(date +%s%N); \
+	query function ; \
+	end=$$(date +%s%N); \
+	echo "- Functions updated: $$(( (end-start)/1000000 ))ms"
+
+deploy: ## Deploy to the cloud
+	@echo "Deploying..."
+	make _dbundle -s
+	make _dtailwindcss -s
+	make _dasset -s
+	make _dfunction -s
+
 # Help
 
 help: echo-bun ## Show this help

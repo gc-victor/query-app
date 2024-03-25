@@ -121,6 +121,25 @@ We recommend using Query with Fly (https://fly.io). It will help you deploy your
 
 For more information, [Run Query Server On Fly.io](https://github.com/gc-victor/query?tab=readme-ov-file#run-a-query-server-on-flyio).
 
+## Deploy - GitHub Actions
+
+The Query App uses GitHub Actions to automate the deployment process.
+
+First, you have to rename the `.github/_workflows` directory to `.github/workflows`.
+
+Then, you have to set a couple of variables in the **GitHub repository settings**:
+
+- `QUERY_APP_QUERY_SERVER`: Your server's URL.
+- `QUERY_PRIVATE_TOKEN`: As a **secret**, your server's admin token.
+
+To get the admin token, you have to run the following command:
+
+```bash
+query user-token value
+```
+
+When you push to the `main` branch, it will deploy the app to your server.
+
 ## Related information
 
 - [Query](https://github.com/gc-victor/query)
