@@ -52,9 +52,16 @@ body {
         url("/_/asset/public/webfonts/cache/CalSans-SemiBold.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Red Hat Text";
+    font-style: normal;
+    font-display: optional;
+    font-weight: 400;
+    src: url("/_/asset/public/webfonts/cache/RedHatText-Regular.ttf") format("truetype");
+}
+
 body {
-    color: rgb(2 6 23);
-    font-family: "RedHatDisplay-Regular", sans-serif;
+    font-family: "Red Hat Text", sans-serif;
 }
 
 /* Utils */
