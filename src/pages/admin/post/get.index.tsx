@@ -38,12 +38,15 @@ export async function handleRequest(req: Request): Promise<Response> {
 
     return new Response(
         <Template>
-            <Head title="Query Admin Post">{await getStyle("dist/styles.css")}</Head>
+            <Head>
+                <title>Query Admin Post</title>
+                {await getStyle("dist/styles.css")}
+            </Head>
             <Body class="overflow-y-scroll">
                 <PostView data={result as unknown as PostViewProps[]} />
                 {svg}
                 {await getScript("dist/admin/post/island/post.island.js")}
-                {/* {hotReload(url.href)} */}
+                {hotReload(url.href)}
             </Body>
         </Template>,
         {

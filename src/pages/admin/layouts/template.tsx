@@ -4,13 +4,13 @@ export const Template = ({ children }: { children?: unknown }) => {
     return `<!DOCTYPE html>${<html lang="en">{children}</html>}`;
 };
 
-export function Head({ title = "Query", children }: { title: string; children?: unknown }) {
+export function Head({ children }: { children?: unknown }) {
     return (
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title>{title}</title>
+
             {children}
         </head>
     );

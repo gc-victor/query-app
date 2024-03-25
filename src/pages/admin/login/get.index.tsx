@@ -26,7 +26,10 @@ export async function handleRequest(req: Request): Promise<Response> {
 
     return new Response(
         <Template>
-            <Head title="Query Admin Login">{await getStyle("dist/styles.css")}</Head>
+            <Head>
+                <title>Query Admin Login</title>
+                {await getStyle("dist/styles.css")}
+            </Head>
             <Body class="bg-slate-950 text-white bg-gradient-to-b from-slate-900 to-slate-950 overflow-y-scroll">
                 <LoginView />
                 {svg}

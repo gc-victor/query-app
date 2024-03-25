@@ -10,7 +10,7 @@ import { hotReload } from "@/pages/hot-reload/hot-reload";
 import { adminUserSession, getAdminUserSession } from "@/lib/server/admin-user-session";
 import { getScript, getStyle } from "@/lib/server/get-bundle-files";
 import { Body, Head, Template } from "@/pages/admin/layouts/template";
-import { {{ tablePascalCase }}View, {{ tablePascalCase }}ViewProps } from "./{{ tableLowerCase }}.view";
+import { {{ tablePascalCase }}View, type {{ tablePascalCase }}ViewProps } from "./{{ tableLowerCase }}.view";
 
 export async function handleRequest(req: Request): Promise<Response> {
     const url = new URL(req.url);
@@ -36,7 +36,10 @@ export async function handleRequest(req: Request): Promise<Response> {
 
     return new Response(
         <Template>
-            <Head title="Query Admin {{ tableCapitalCase }}">{await getStyle("dist/styles.css")}</Head>
+            <Head>
+                <title>Query Admin {{ tableCapitalCase }}</title>
+                {await getStyle("dist/styles.css")}
+            </Head>
             <Body class="overflow-y-scroll">
                 <{{tablePascalCase }}View data={result as unknown as {{tablePascalCase }}ViewProps[]} />
                 {svg}

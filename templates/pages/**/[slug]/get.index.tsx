@@ -34,7 +34,10 @@ export async function handleRequest(req: Request) {
 
         return new Response(
             <Template>
-                <Head title="Query {{ tableCapitalCase }} Item">{await getStyle("dist/styles.css")}</Head>
+                <Head>
+                    <title>Query {{ tableCapitalCase }} Item</title>
+                    {await getStyle("dist/styles.css")}
+                </Head>
                 <Body class="overflow-y-scroll">
                     <Layout>
                         <article>
