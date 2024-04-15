@@ -18,7 +18,7 @@ export class Token {
     }
 
     async save(name: string, queryToken: QueryToken): Promise<void> {
-        await this.#db.execute("INSERT INTO token (name, query_token) VALUES (?, ?, ?)", [name, queryToken]);
+        await this.#db.query("INSERT INTO token (name, query_token) VALUES (?, ?, ?)", [name, queryToken]);
     }
 
     async load(name: string, req: Request): Promise<TokenLoad> {
@@ -40,19 +40,19 @@ export class Token {
     }
 
     async clear(name: string): Promise<void> {
-        await this.#db.execute("DELETE FROM token WHERE name = ?", [name]);
+        await this.#db.query("DELETE FROM token WHERE name = ?", [name]);
     }
 
     async activate(name: string): Promise<void> {
-        await this.#db.execute("UPDATE token SET active = 1 WHERE name = ?", [name]);
+        await this.#db.query("UPDATE token SET active = 1 WHERE name = ?", [name]);
     }
 
     async deactivate(name: string): Promise<void> {
-        await this.#db.execute("UPDATE token SET active = 0 WHERE name = ?", [name]);
+        await this.#db.query("UPDATE token SET active = 0 WHERE name = ?", [name]);
     }
 
     async refreshToken(name: string): Promise<void> {
-        await this.#db.execute("UPDATE session SET public_token = uuid() WHERE name = ?", [name]);
+        await this.#db.query("UPDATE session SET public_token = uuid() WHERE name = ?", [name]);
     }
 }
 
