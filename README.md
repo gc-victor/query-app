@@ -26,35 +26,7 @@ To get started with the Query App locally, you need to follow these steps:
     pnpm install
     ```
 
-4. Install the Query CLI
-
-    macOS and Linux (not NixOS, Alpine, or Asahi):
-
-    ```bash
-    curl --proto '=https' --tlsv1.2 -LsSf https://github.com/gc-victor/query/releases/latest/download/query-installer.sh | sh
-    ```
-
-    Windows (PowerShell):
-
-    ```powershell
-    irm https://github.com/gc-victor/query/releases/latest/download/query-installer.ps1 | iex
-    ```
-
-5. Install the Query Server
-
-    macOS and Linux (not NixOS, Alpine, or Asahi):
-
-    ```bash
-    curl --proto '=https' --tlsv1.2 -LsSf https://github.com/gc-victor/query/releases/latest/download/query-server-installer.sh | sh
-    ```
-
-    Windows (PowerShell):
-
-    ```powershell
-    irm https://github.com/gc-victor/query/releases/latest/download/query-server-installer.ps1 | iex
-    ```
-
-6. Setup Query
+4. Setup Query
 
     Let's start with the environment variables
 
@@ -82,26 +54,26 @@ To get started with the Query App locally, you need to follow these steps:
     - **Email**: `admin`
     - **Password**: `admin`
 
-7. Run the server
+5. Run the server
 
     ```bash
     make server -s
     ```
 
-8. Run the watcher
+6. Run the watcher
 
     ```bash
     make watch -s
     ```
 
-9. Run the default migrations
+7. Run the default migrations
 
     ```bash
     query migration admin_user_session.sql migrations/admin_user_session.sql/20240116141458-admin_session-up.sql && \
     query migration post.sql migrations/post.sql/20240117102216-post-up.sql
     ```
 
-10. Generate your first entity
+8. Generate your first entity
 
     ```bash
     query generate test.sql test active:boolean title:string content:text number:integer
