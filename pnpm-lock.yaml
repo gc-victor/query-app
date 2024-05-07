@@ -19,11 +19,11 @@ importers:
         specifier: ~1.7.3
         version: 1.7.3
       '@qery/query':
-        specifier: ^0.12.0
-        version: 0.12.0
+        specifier: ^0.12.1
+        version: 0.12.1
       '@qery/query-server':
-        specifier: ^0.12.0
-        version: 0.12.0
+        specifier: ^0.12.1
+        version: 0.12.1
       esbuild:
         specifier: ^0.20.2
         version: 0.20.2
@@ -291,13 +291,13 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@qery/query-server@0.12.0':
-    resolution: {integrity: sha512-CwMvIEGJo4CMh/sFHNFXhWSprkTpN/1vQYawiUd9ZVQrLHu4Z5QHoTJC/PQepAbDGsBipqNFUU85qTnrgBy9/A==}
+  '@qery/query-server@0.12.1':
+    resolution: {integrity: sha512-gHu3QA3YtT8Er0KDYgjGB52/sUR8phF+lmnK+Awncp3hF/bbncGhwZtuyn+OnSf3alUkW8BEuHdTRuCDsnhweg==}
     engines: {node: '>=14', npm: '>=6'}
     hasBin: true
 
-  '@qery/query@0.12.0':
-    resolution: {integrity: sha512-L97YLuWTzF+Ol9UcMEr9BijWu1pNbiyAaJOs/7T0c3abR7OzK4IWQh4OSHf/IhN+cppTG64S/jq8a5A4e1q6cg==}
+  '@qery/query@0.12.1':
+    resolution: {integrity: sha512-Aych5UWeThjUyzOPZpw+67XyJ4CyrczDdvWxHgDyhA7DJ0kFWEeTfoYr94ldHML1knD+CN/rSTNhlxtk4gKg7w==}
     engines: {node: '>=14', npm: '>=6'}
     hasBin: true
 
@@ -1271,7 +1271,7 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@qery/query-server@0.12.0':
+  '@qery/query-server@0.12.1':
     dependencies:
       axios: 1.6.8
       axios-proxy-builder: 0.1.2
@@ -1282,7 +1282,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@qery/query@0.12.0':
+  '@qery/query@0.12.1':
     dependencies:
       axios: 1.6.8
       axios-proxy-builder: 0.1.2
