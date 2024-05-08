@@ -19,11 +19,11 @@ importers:
         specifier: ~1.7.3
         version: 1.7.3
       '@qery/query':
-        specifier: ^0.12.2
-        version: 0.12.2
+        specifier: ~0.12
+        version: 0.12.3
       '@qery/query-server':
-        specifier: ^0.12.2
-        version: 0.12.2
+        specifier: ~0.12
+        version: 0.12.3
       esbuild:
         specifier: ^0.20.2
         version: 0.20.2
@@ -291,13 +291,13 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@qery/query-server@0.12.2':
-    resolution: {integrity: sha512-S9BswRCEto9+e7o4DvXyaBGNnZFD1so3vxlXiuselY2749G3U+mhZFo7Q9q+TJSbxJVO4GXPDUeFoIG4N5AUQQ==}
+  '@qery/query-server@0.12.3':
+    resolution: {integrity: sha512-CYmqWWUaRrcDu+td9j5X0YjmZ+Ddedi+TP0/tLJoF+6VGogfPapbcMIFjSZ+QImSJLdUzoF3Ak2ywF3RwpK3Hg==}
     engines: {node: '>=14', npm: '>=6'}
     hasBin: true
 
-  '@qery/query@0.12.2':
-    resolution: {integrity: sha512-5pm/c+hED5HdidHz8PTCD4oXhjLwAK+2fl3wkVKvz+HUoReqx+H9oGcTr7WBHFFPOzAeiEIn/WhDZsFw1Zwftw==}
+  '@qery/query@0.12.3':
+    resolution: {integrity: sha512-zMwfRWRrfM3prB03292swW9ov9SSkM249IkBc+hYsdHoD/H/6oOOTliyOob1BJc/t6ilkMNwcN93GPbW2TwlMQ==}
     engines: {node: '>=14', npm: '>=6'}
     hasBin: true
 
@@ -508,8 +508,8 @@ packages:
   easy-table@1.1.0:
     resolution: {integrity: sha512-oq33hWOSSnl2Hoh00tZWaIPi1ievrD9aFG82/IgjlycAnW9hHx5PkJiXpxPsgEE+H7BsbVQXFVFST8TEXS6/pA==}
 
-  electron-to-chromium@1.4.757:
-    resolution: {integrity: sha512-jftDaCknYSSt/+KKeXzH3LX5E2CvRLm75P3Hj+J/dv3CL0qUYcOt13d5FN1NiL5IJbbhzHrb3BomeG2tkSlZmw==}
+  electron-to-chromium@1.4.758:
+    resolution: {integrity: sha512-/o9x6TCdrYZBMdGeTifAP3wlF/gVT+TtWJe3BSmtNh92Mw81U9hrYwW9OAGUh+sEOX/yz5e34sksqRruZbjYrw==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -1271,7 +1271,7 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@qery/query-server@0.12.2':
+  '@qery/query-server@0.12.3':
     dependencies:
       axios: 1.6.8
       axios-proxy-builder: 0.1.2
@@ -1282,7 +1282,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@qery/query@0.12.2':
+  '@qery/query@0.12.3':
     dependencies:
       axios: 1.6.8
       axios-proxy-builder: 0.1.2
@@ -1372,7 +1372,7 @@ snapshots:
   browserslist@4.23.0:
     dependencies:
       caniuse-lite: 1.0.30001616
-      electron-to-chromium: 1.4.757
+      electron-to-chromium: 1.4.758
       node-releases: 2.0.14
       update-browserslist-db: 1.0.15(browserslist@4.23.0)
 
@@ -1495,7 +1495,7 @@ snapshots:
     optionalDependencies:
       wcwidth: 1.0.1
 
-  electron-to-chromium@1.4.757: {}
+  electron-to-chromium@1.4.758: {}
 
   emoji-regex@8.0.0: {}
 
