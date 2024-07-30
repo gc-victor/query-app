@@ -5,13 +5,13 @@
 ## Create a new project
 
 ```sh
-pnpm dlx @qery/query create 
+pnpm dlx @qery/query create https://github.com/gc-victor/query-app
 ```
 
 Or
 
 ```sh
-npx @qery/query create
+npx @qery/query create https://github.com/gc-victor/query-app
 ```
 
 > [!IMPORTANT]
