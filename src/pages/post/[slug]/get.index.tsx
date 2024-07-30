@@ -32,7 +32,10 @@ export async function handleRequest(req: Request) {
 
         return new Response(
             <Template>
-                <Head title={title}>{await getStyle("dist/styles.css")}</Head>
+                <Head>
+                    <title>{ title }</title>
+                    {await getStyle("dist/styles.css")}
+                </Head>
                 <Body class="overflow-y-scroll">
                     <Layout>
                         <Post created_at={created_at} datetime={datetime} image_url={image_url} title={title} content={content} />
