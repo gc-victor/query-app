@@ -1,5 +1,3 @@
-import h from "h";
-
 import { CLASS_LOGIN_FORM_DESCRIPTION, CLASS_LOGIN_FORM_ERROR, CLASS_LOGIN_FORM_ERROR_TEXT, ID_LOGIN_FORM } from "./login.constants";
 
 export function LoginFormView() {

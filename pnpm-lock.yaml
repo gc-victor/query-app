@@ -8,11 +8,14 @@ importers:
 
   .:
     dependencies:
-      h:
-        specifier: github:gc-victor/h
-        version: https://codeload.github.com/gc-victor/h/tar.gz/d7d959d1f36c378fa90b377248736c41bd3cf866
+      preact:
+        specifier: ~10.23.1
+        version: 10.23.1
+      preact-render-to-string:
+        specifier: ~6.5.7
+        version: 6.5.7(preact@10.23.1)
       valibot:
-        specifier: ^0.36.0
+        specifier: ~0.36.0
         version: 0.36.0
     devDependencies:
       '@biomejs/biome':
@@ -31,7 +34,7 @@ importers:
         specifier: ~3.4.7
         version: 3.4.7
       tailwindcss-cli:
-        specifier: ^0.1.2
+        specifier: ~0.1.2
         version: 0.1.2
       typescript:
         specifier: ~5.5.4
@@ -604,10 +607,6 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  h@https://codeload.github.com/gc-victor/h/tar.gz/d7d959d1f36c378fa90b377248736c41bd3cf866:
-    resolution: {tarball: https://codeload.github.com/gc-victor/h/tar.gz/d7d959d1f36c378fa90b377248736c41bd3cf866}
-    version: 0.0.0
-
   has-flag@3.0.0:
     resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
     engines: {node: '>=4'}
@@ -906,6 +905,14 @@ packages:
   postcss@8.4.40:
     resolution: {integrity: sha512-YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==}
     engines: {node: ^10 || ^12 || >=14}
+
+  preact-render-to-string@6.5.7:
+    resolution: {integrity: sha512-nACZDdv/ZZciuldVYMcfGqr61DKJeaAfPx96hn6OXoBGhgtU2yGQkA0EpTzWH4SvnwF0syLsL4WK7AIp3Ruc1g==}
+    peerDependencies:
+      preact: '>=10'
+
+  preact@10.23.1:
+    resolution: {integrity: sha512-O5UdRsNh4vdZaTieWe3XOgSpdMAmkIYBCT3VhQDlKrzyCm8lUYsk0fmVEvoQQifoOjFRTaHZO69ylrzTW2BH+A==}
 
   pretty-hrtime@1.0.3:
     resolution: {integrity: sha512-66hKPCr+72mlfiSjlEB1+45IjXSqvVAIy6mocupoww4tBFE9R9IhwwUGoI4G++Tc9Aq+2rxOt0RFU6gPcrte0A==}
@@ -1620,8 +1627,6 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  h@https://codeload.github.com/gc-victor/h/tar.gz/d7d959d1f36c378fa90b377248736c41bd3cf866: {}
-
   has-flag@3.0.0: {}
 
   has-flag@4.0.0: {}
@@ -1864,6 +1869,12 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.0.1
       source-map-js: 1.2.0
+
+  preact-render-to-string@6.5.7(preact@10.23.1):
+    dependencies:
+      preact: 10.23.1
+
+  preact@10.23.1: {}
 
   pretty-hrtime@1.0.3: {}
 

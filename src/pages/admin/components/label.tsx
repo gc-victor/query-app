@@ -1,6 +1,11 @@
-import h from "h";
+import type { ComponentChildren } from "preact";
 
-export function Label({ children = "", htmlFor, required, ...props }: { htmlFor: string; [key: string]: string | undefined }) {
+export function Label({
+    children,
+    htmlFor,
+    required,
+    ...props
+}: { htmlFor: string; children?: ComponentChildren; [key: string]: unknown | unknown[] }) {
     return (
         <label
             for={htmlFor}

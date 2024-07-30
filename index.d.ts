@@ -1,12 +1,25 @@
 /// <reference lib="dom" />
 
-declare global {
-    // NOTE: To avoid editor ts error
+import type { JSX as PreactJSX } from 'preact';
+
+declare module 'preact' {
     namespace JSX {
-        interface IntrinsicElements {
-            [elemName: string]: unknown;
+        interface IntrinsicElements extends PreactJSX.IntrinsicElements {
+            'table-element': TableElementProps;
         }
     }
+}
+
+interface TableElementProps extends HTMLAttributes<HTMLTableElement> {
+    url: string;
+}
+
+interface Table extends React.HTMLAttributes {
+    url: string;
+}
+
+declare global {
+    // NOTE: To avoid editor ts error
 
     interface Window {
         SideDrawer: NodeElement;
@@ -21,19 +34,7 @@ declare global {
     class Database {
         constructor(path: string);
         query(sql: string, params?: unknown[] | Record<string, unknown>): Promise<Record<string, unknown>[]>;
-        execute(sql: string, params?: unknown[] | Record<string, unknown>): Promise<Record<string, unknown>[]>;
     }
-
-    // biome-ignore lint/style/noVar: <explanation>
-    var argon2: {
-        hash: (password: string) => Promise<string>;
-        verify: (password: string, hash: string) => Promise<boolean>;
-    };
-
-    declare module 'h/document';
-
-    // biome-ignore lint/style/noVar: <explanation>
-    var span
 
     declare module "*.html" {
         const content: string;
@@ -45,5 +46,3 @@ declare global {
         export default content;
     }
 }
-
-export { };

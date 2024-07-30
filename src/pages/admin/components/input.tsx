@@ -1,9 +1,7 @@
-import h from "h";
-
 import { FieldError } from "./filed-error";
 import { Label } from "./label";
 
-export function Input({ label, id, children, ...props }: { label: string; id: string; [key: string]: unknown }) {
+export function Input({ label, id, ...props }: { label: string; id: string; [key: string]: unknown }) {
     const fileStyles = `
     file:-mx-3
     file:-my-3

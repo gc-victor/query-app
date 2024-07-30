@@ -1,15 +1,10 @@
-import "h/document";
-
-import h from "h";
-
-import svg from "@/pages/pages.svg";
-
-import { POST_DATABASE } from "@/config/shared/post.constants";
-import { PAGE_POST_PATH } from "@/config/shared/post.constants";
-import { getStyle } from "@/lib/server/get-bundle-files";
-import { hotReload } from "@/pages/hot-reload/hot-reload";
+import { PAGE_POST_PATH, POST_DATABASE } from "@/config/shared/post.constants";
+import { getNameHashed } from "@/lib/server/get-bundle-files";
+import { render } from "@/lib/server/render";
+import { SVG } from "@/pages/components/svg";
+import { HotReload } from "@/pages/hot-reload/hot-reload";
 import { Layout } from "@/pages/layouts/layout";
-import { Body, Head, Template } from "@/pages/layouts/template";
+import { Body, Head } from "@/pages/layouts/template";
 import { Excerpt } from "./excerpt";
 
 export async function handleRequest(req: Request) {
@@ -41,24 +36,28 @@ export async function handleRequest(req: Request) {
         };
     });
 
+    const stylesNameHashed = await getNameHashed("dist/styles.css");
+
     return new Response(
-        <Template>
-            <Head>
-                <title>Query Blog</title>
-                {await getStyle("dist/styles.css")}
-            </Head>
-            <Body class="overflow-y-scroll">
-                <Layout>
-                    <div class="flex flex-col space-y-8">
-                        {posts.map((post) => (
-                            <Excerpt {...post} />
-                        ))}
-                    </div>
-                </Layout>
-                {svg}
-                {hotReload(url.href)}
-            </Body>
-        </Template>,
+        render(
+            <>
+                <Head>
+                    <title>Query Blog</title>
+                    <link rel="stylesheet" href={`/_/asset/${stylesNameHashed}`} />
+                </Head>
+                <Body class="overflow-y-scroll">
+                    <Layout>
+                        <div class="flex flex-col space-y-8">
+                            {posts.map((post) => (
+                                <Excerpt key={post.slug} {...post} />
+                            ))}
+                        </div>
+                    </Layout>
+                    <SVG />
+                    {/* <HotReload href={url.href} /> */}
+                </Body>
+            </>,
+        ),
         {
             headers: {
                 "Content-Type": "text/html; charset=utf-8",

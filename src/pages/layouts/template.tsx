@@ -1,14 +1,6 @@
-import h from "h";
+import type { ComponentChildren } from "preact";
 
-export const Template = ({ children }: { children?: unknown }) => {
-    return `<!DOCTYPE html>${(
-        <html lang="en">
-            {children}
-        </html>
-    )}`;
-};
-
-export function Head({ children }: { children?: unknown }) {
+export function Head({ children }: { children?: ComponentChildren }) {
     return (
         <head>
             <meta charset="UTF-8" />
@@ -20,6 +12,6 @@ export function Head({ children }: { children?: unknown }) {
     );
 }
 
-export function Body({ children, ...props }: { children?: unknown; [key: string]: unknown | unknown[] }) {
+export function Body({ children, ...props }: { children?: ComponentChildren; [key: string]: unknown | unknown[] }) {
     return <body {...props}>{children}</body>;
 }

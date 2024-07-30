@@ -1,8 +1,6 @@
-import { h } from "h";
-
 import { CLASS_FORM_ERROR_TEXT } from "@/pages/admin/utils/constants";
 
-export function FieldError({ children, id }: { children?: unknown; id: string }) {
+export function FieldError({ id }: { id: string }) {
     return (
         <span
             class={`

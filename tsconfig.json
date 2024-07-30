@@ -15,12 +15,11 @@
         "strict": true,
         "downlevelIteration": true,
         "skipLibCheck": true,
-        "jsx": "react",
-        "jsxFactory": "h",
-        "jsxFragmentFactory": "Fragment",
+        "jsx": "react-jsx",
+        "jsxImportSource": "preact",
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
-        "types": ["./index.d.ts"],
+        "types": ["preact", "./index.d.ts"]
     }
 }

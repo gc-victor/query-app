@@ -1,7 +1,4 @@
-import h from "h";
-
 import { API_ADMIN_POST_PATH } from "@/config/shared/post.constants";
-
 import { Button } from "@/pages/admin/components/button";
 import { Input } from "@/pages/admin/components/input";
 import { Legend } from "@/pages/admin/components/legend";
@@ -10,7 +7,7 @@ import { ID_FORM_COMPONENT } from "@/pages/admin/utils/constants";
 
 export function PostFormView() {
     return (
-        <form is="form-element" id={ID_FORM_COMPONENT} class="h-full pt-6 w-full" method="dialog" path={API_ADMIN_POST_PATH}>
+        <form is="form-element" id={ID_FORM_COMPONENT} class="h-full pt-6 w-full" method="dialog" data-path={API_ADMIN_POST_PATH}>
             <div class="absolute right-4 text-3xl top-4">
                 <Button variant="transparent" type="reset">
                     <span class="block px-3 py-1">
@@ -19,11 +16,18 @@ export function PostFormView() {
                     </span>
                 </Button>
             </div>
-            <fieldset class="max-h-svh -mb-40 overflow-y-auto pb-40 px-6 space-y-6" tabindex="-1">
+            <fieldset class="max-h-svh -mb-40 overflow-y-auto pb-40 px-6 space-y-6" tabindex={-1}>
                 <Legend>Post</Legend>
                 <Input id="title" label="Title" aria-required="true" placeholder="Write a title here..." />
                 <Input id="slug" label="Slug" aria-required="true" placeholder="Write a slug here..." />
-                <Input id="image" label="Image" type="file" accept="image/*" aria-required="true" placeholder="Write an image url here..." />
+                <Input
+                    id="image"
+                    label="Image"
+                    type="file"
+                    accept="image/*"
+                    aria-required="true"
+                    placeholder="Write an image url here..."
+                />
                 <input name="image_url" type="hidden" />
                 <Textarea id="content" label="Content" aria-required="true" placeholder="Write a content here..." />
             </fieldset>

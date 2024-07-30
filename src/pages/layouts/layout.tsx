@@ -1,8 +1,8 @@
-import h from "h";
+import type { ComponentChildren } from "preact";
 
 import { PAGE_POST_PATH } from "@/config/shared/post.constants";
 
-export function Layout({ children }: { children?: unknown }) {
+export function Layout({ children }: { children?: ComponentChildren }) {
     return (
         <div class="flex flex-col min-h-screen bg-white">
             <header class="w-full py-2 px-8 bg-white shadow">

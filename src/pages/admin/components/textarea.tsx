@@ -1,9 +1,14 @@
-import h from "h";
+import type { ComponentChildren } from "preact";
 
 import { FieldError } from "./filed-error";
 import { Label } from "./label";
 
-export function Textarea({ children = "", id, label, ...props }: { id: string; label: string; [key: string]: unknown }) {
+export function Textarea({
+    children = "",
+    id,
+    label,
+    ...props
+}: { id: string; label: ComponentChildren; children?: ComponentChildren; [key: string]: unknown }) {
     return (
         <div class="relative space-y-1">
             <Label htmlFor={id} required={props["aria-required"] ? "true" : "false"}>

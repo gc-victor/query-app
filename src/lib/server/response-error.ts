@@ -1,4 +1,4 @@
-import { StatusCode, StatusMessage } from "./status";
+import type { StatusCode, StatusMessage } from "./status";
 
 export interface ResponseErrorMessage {
     message: StatusMessage;

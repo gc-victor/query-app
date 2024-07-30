@@ -1,17 +1,15 @@
 import { CLASS_FORM_ERROR_TEXT, ID_DRAWER_COMPONENT } from "@/pages/admin/utils/constants";
 
-import { DrawerComponent } from "./drawer-element";
+import type { DrawerComponent } from "./drawer-element";
 
 export interface FormComponent extends HTMLElement {
-    uuid: string;
-    path: string;
     setFormData(): Promise<void>;
 }
 
 class Form extends HTMLFormElement {
     connectedCallback() {
         document.getElementById(ID_DRAWER_COMPONENT)?.addEventListener("close", () => {
-            this.uuid = "";
+            this.removeAttribute("data-uuid");
             this.reset();
         });
 
@@ -50,42 +48,18 @@ class Form extends HTMLFormElement {
         }
     }
 
-    get uuid(): string {
-        return this.getAttribute("uuid") as string;
-    }
-
-    set uuid(value: string) {
-        if (value) {
-            this.setAttribute("uuid", value);
-        } else if (this.hasAttribute("uuid")) {
-            this.removeAttribute("uuid");
-        }
-    }
-
-    get path(): string {
-        return this.getAttribute("path") as string;
-    }
-
-    set path(value: string) {
-        if (value) {
-            this.setAttribute("path", value);
-        } else if (this.hasAttribute("path")) {
-            this.removeAttribute("path");
-        }
-    }
-
     static get observedAttributes(): string[] {
-        return ["uuid"];
+        return ["data-uuid"];
     }
 
     async attributeChangedCallback(name: string, oldValue: unknown, newValue: unknown) {
-        if (name === "uuid" && newValue) {
+        if (name === "data-uuid" && newValue) {
             await this.setFormData();
         }
     }
 
     async setFormData() {
-        const res = await fetch(`${this.path}/uuid/${this.uuid}`, { method: "GET" });
+        const res = await fetch(`${this.dataset.path}/uuid/${this.dataset.uuid}`, { method: "GET" });
         const json = await res.json();
         const jsonData = json.data[0];
 
@@ -114,7 +88,7 @@ class Form extends HTMLFormElement {
 
         if ((e.target as HTMLButtonElement)?.getAttribute("formmethod") === "delete") {
             this.delete(e);
-        } else if (this.uuid) {
+        } else if (this.dataset.uuid) {
             this.update(e);
         } else {
             this.create(e);
@@ -124,8 +98,8 @@ class Form extends HTMLFormElement {
     async delete(e: Event) {
         e.preventDefault();
 
-        if (this.uuid) {
-            await fetch(`${this.path}`, { method: "DELETE", body: JSON.stringify({ uuid: this.uuid }) });
+        if (this.dataset.uuid) {
+            await fetch(`${this.dataset.path}`, { method: "DELETE", body: JSON.stringify({ uuid: this.dataset.uuid }) });
         }
 
         this.close();
@@ -141,7 +115,7 @@ class Form extends HTMLFormElement {
         // NOTE: it forces to set the formData value to valueAsNumber
         this.dateToValueAsNumber(formData);
 
-        const res = await fetch(`${this.path}`, { method: "POST", body: formData });
+        const res = await fetch(`${this.dataset.path}`, { method: "POST", body: formData });
 
         if (res.ok) {
             this.close();
@@ -164,9 +138,11 @@ class Form extends HTMLFormElement {
         // NOTE: it forces to set the formData value to valueAsNumber
         this.dateToValueAsNumber(formData);
 
-        formData.set("uuid", this.uuid);
+        if (this.dataset.uuid) {
+            formData.set("uuid", this.dataset.uuid);
+        }
 
-        const res = await fetch(`${this.path}`, { method: "PUT", body: formData });
+        const res = await fetch(`${this.dataset.path}`, { method: "PUT", body: formData });
 
         if (res.ok) {
             this.close();

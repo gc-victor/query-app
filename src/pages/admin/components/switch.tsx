@@ -1,5 +1,3 @@
-import h from "h";
-
 import { Label } from "./label";
 
 type Checked = "true" | "false";
@@ -7,10 +5,9 @@ type Checked = "true" | "false";
 export function Switch({
     label,
     id,
-    children,
     checked = "false",
     ...props
-}: { label: string; id: string; [key: string]: unknown; checked?: Checked }) {
+}: { label: string; id: string; checked?: Checked; [key: string]: string | number | boolean | undefined; }) {
     return (
         <div className="flex flex-col">
             <span className="w-0">

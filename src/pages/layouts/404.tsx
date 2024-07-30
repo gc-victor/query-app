@@ -1,5 +1,3 @@
-import h from "h";
-
 import { Button } from "@/pages/components/button";
 
 export function Html404({ link }: { link: string }) {

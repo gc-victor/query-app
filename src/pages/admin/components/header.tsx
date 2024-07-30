@@ -1,9 +1,10 @@
+import type { ComponentChildren } from "preact";
+
 import { API_ADMIN_LOGOUT_PATH } from "@/config/shared/shared.constants";
-import h from "h";
 import { Button } from "./button";
 import { Menu } from "./menu";
 
-export function Header({ children }: { children?: unknown }) {
+export function Header({ children }: { children?: ComponentChildren }) {
     return (
         <header class="flex items-center justify-between px-4">
             <figure class="flex items-center h-16">

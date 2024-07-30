@@ -1,11 +1,11 @@
-import h from "h";
+import type { ComponentChildren } from "preact";
 
 type Tag = "button" | "a";
 type Variant = "sm" | "md" | "lg" | "w-sm" | "w-md" | "w-lg" | "transparent" | "link";
 type Color = "default" | "red";
 
 export function Button({
-    children = "Submit",
+    children = "Submit" as ComponentChildren,
     color = "default",
     tag = "button" as Tag,
     type = "button",

@@ -1,29 +1,26 @@
-import { PAGE_ADMIN_POST_PATH } from "@/config/shared/post.constants";
 import { ID_DRAWER_COMPONENT, ID_FORM_COMPONENT, ID_NEW_ITEM } from "@/pages/admin/utils/constants";
 
-import { DrawerComponent } from "./drawer-element";
-import { FormComponent } from "./form-element";
-
-export interface TableComponent extends HTMLElement {
-    url: string;
-}
+import type { DrawerComponent } from "./drawer-element";
+import type { FormComponent } from "./form-element";
 
 class Table extends HTMLTableElement {
     connectedCallback() {
         this.addEventListener("click", this.handleClick);
 
         document.getElementById(ID_DRAWER_COMPONENT)?.addEventListener("close", async () => {
-            const response = await fetch(this.url);
-            const html = await response.text();
-            const template = document.createElement("template");
-            template.innerHTML = html;
-            const doc = template.content.cloneNode(true) as Document;
-            const docTBody = doc.querySelector("tbody");
+            if (this.dataset.url) {
+                const response = await fetch(this.dataset.url);
+                const html = await response.text();
+                const template = document.createElement("template");
+                template.innerHTML = html;
+                const doc = template.content.cloneNode(true) as Document;
+                const docTBody = doc.querySelector("tbody");
 
-            if (docTBody) {
-                const tbody = this.querySelector("tbody");
+                if (docTBody) {
+                    const tbody = this.querySelector("tbody");
 
-                tbody?.parentNode?.replaceChild(docTBody, tbody);
+                    tbody?.parentNode?.replaceChild(docTBody, tbody);
+                }
             }
         });
 
@@ -43,18 +40,6 @@ class Table extends HTMLTableElement {
         }
     }
 
-    get url(): string {
-        return this.getAttribute("url") as string;
-    }
-
-    set url(value: string) {
-        if (value) {
-            this.setAttribute("url", value);
-        } else if (this.hasAttribute("url")) {
-            this.removeAttribute("url");
-        }
-    }
-
     handleClick(event: Event) {
         const target = event.target;
 
@@ -65,12 +50,12 @@ class Table extends HTMLTableElement {
         event.preventDefault();
 
         const el = (target as HTMLElement).closest("tr");
-        const uuid = el?.getAttribute("data-uuid");
+        const uuid = el?.dataset.uuid;
         const drawer = document.getElementById(ID_DRAWER_COMPONENT) as DrawerComponent | null;
         const form = document.getElementById(ID_FORM_COMPONENT) as FormComponent;
 
         if (uuid && drawer && form) {
-            form.uuid = uuid;
+            form.dataset.uuid = uuid;
             drawer.open = true;
         }
     }
