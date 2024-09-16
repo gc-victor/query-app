@@ -12,8 +12,8 @@ importers:
         specifier: ~10.24.0
         version: 10.24.0
       preact-render-to-string:
-        specifier: ~6.5.9
-        version: 6.5.9(preact@10.24.0)
+        specifier: ~6.5.11
+        version: 6.5.11(preact@10.24.0)
       valibot:
         specifier: ~0.42.0
         version: 0.42.0(typescript@5.5.4)
@@ -906,8 +906,8 @@ packages:
     resolution: {integrity: sha512-YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==}
     engines: {node: ^10 || ^12 || >=14}
 
-  preact-render-to-string@6.5.9:
-    resolution: {integrity: sha512-Fn9R89h6qrQeSRmsH2O2fWzqpVwsJgEL9UTly5nGEV2ldhVuG+9JhXdNJ6zreIkOZcBT20+AOMwlG1x72znJ+g==}
+  preact-render-to-string@6.5.11:
+    resolution: {integrity: sha512-ubnauqoGczeGISiOh6RjX0/cdaF8v/oDXIjO85XALCQjwQP+SB4RDXXtvZ6yTYSjG+PC1QRP2AhPgCEsM2EvUw==}
     peerDependencies:
       preact: '>=10'
 
@@ -1875,7 +1875,7 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  preact-render-to-string@6.5.9(preact@10.24.0):
+  preact-render-to-string@6.5.11(preact@10.24.0):
     dependencies:
       preact: 10.24.0
 
