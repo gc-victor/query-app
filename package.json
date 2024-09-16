@@ -3,7 +3,7 @@
     "type": "module",
     "dependencies": {
         "preact": "~10.24.0",
-        "preact-render-to-string": "~6.5.9",
+        "preact-render-to-string": "~6.5.11",
         "valibot": "~0.42.0"
     },
     "devDependencies": {
